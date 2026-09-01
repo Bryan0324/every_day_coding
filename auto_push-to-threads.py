@@ -51,6 +51,8 @@ threads = ThreadsClient(
 # 則刷新並保存
 threads.refresh_access_token()
 
+text = ""
+
 # 準備發文內容
 if commit_message[:7] != "-coding":
     text = commit_message[7:]
@@ -60,7 +62,11 @@ if commit_message[:7] != "-coding":
     parts = split_text(text)
     
 elif commit_message[:7] != "-not-cp":
-    text = "TOI初選錄取前每日一題競程"
+    if commit_message[:6] != "-blank":
+        text = "TOI初選錄取前每日一題競程" 
+    else:
+        commit_message = commit_message[6:]
+        
     text += commit_message + "\n"
 
     text += "\n\n" + "今日的程式碼：\n"
